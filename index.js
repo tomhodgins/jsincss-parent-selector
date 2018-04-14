@@ -1,11 +1,10 @@
 export default (selector, rule) => {
 
-  let styles = ''
-  let count = 0
+  return Array.from(document.querySelectorAll(selector))
 
-  Array.from(document.querySelectorAll(selector))
     .filter(tag => tag.parentElement)
-    .forEach(tag => {
+
+    .reduce((styles, tag, count) => {
 
       const attr = selector.replace(/\W/g, '')
 
@@ -13,8 +12,8 @@ export default (selector, rule) => {
       styles += `[data-parent-${attr}="${count}"] { ${rule} }\n`
       count++
 
-    })
+      return styles
 
-  return styles
+    }, '')
 
 }
