@@ -10,8 +10,6 @@ module.exports = (selector, rule) => {
 
       tag.parentElement.setAttribute(`data-parent-${attr}`, count)
       styles += `[data-parent-${attr}="${count}"] { ${rule} }\n`
-      count++
-
       return styles
 
     }, '')
